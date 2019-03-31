@@ -1,0 +1,54 @@
+{% extends 'uks/base.html' %}
+
+{% block content %}
+
+<div class="row">
+     <div class="col-8">
+        <h1>Project: {{project.name}} </h1>
+        <p>{{project.description}}</p>
+     </div>
+
+</div>
+
+<hr>
+
+<div class="row">
+     <div class="col-7">
+        <h3>Members </h3>
+        {% if members %}
+        <ul class="list-group">
+            {% for member in members %}
+                <li class="list-group-item" >
+                   {{ member }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <hr>
+
+        <form action="{% url 'uks:project_add_member' project.id %}" method="post">
+            {% csrf_token %}
+            <label>Enter new member username</label><br />
+            <input type="text" name="member_username" value="" />
+            <input type="submit" class="btn btn-success" value="Add member"/>
+        </form>
+    </div>
+
+    <div class="col">
+        <form action="{% url 'uks:project_update' project.id %}" method="post">
+            {% csrf_token %}
+            <label>Project name</label><br />
+            <input type="text" name="project_name" value="" />
+            <input type="submit" class="btn btn-warning" value="Update Project"/>
+        </form>
+    </div>
+    <div class="col">
+        <form action="{% url 'uks:project_delete' project.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Delete Project"/>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
