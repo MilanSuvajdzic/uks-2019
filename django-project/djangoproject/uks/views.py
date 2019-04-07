@@ -15,12 +15,10 @@ from .models import IssueLabel
 from .models import IssueAssignment
 from .models import Milestone
 from .models import Label
-from .forms import MilestoneForm
 from django.template import loader
 from django.urls import reverse
 from django.contrib import messages
 from django.shortcuts import redirect
-from .forms import MilestoneForm
 # Create your views here.
 
 
